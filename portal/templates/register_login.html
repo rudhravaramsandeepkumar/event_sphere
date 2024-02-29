@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/login/loginstyle.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <title>Sign in & Sign up Form</title>
+
+    <style>
+        .hidden {
+            display: block!important;
+            visibility: visible !important;
+        }
+    </style>
+    <style>
+     @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+.customAlert {
+  display: none;
+  position: fixed;
+  max-width: 25%;
+  min-width: 250px !important;
+  min-height: 20%;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: -12.5%;
+  margin-top: -5.2%;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+@media all and (max-width: 1300px) {
+  .customAlert .message {
+    font-size: 14px !important;
+  }
+  .customAlert input[type=button] {
+    height: 15% !important;
+  }
+}
+.customAlert .message {
+  padding: 5px;
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 25px;
+}
+.customAlert input[type=button] {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 50%;
+  height: 36px;
+  margin-top: -45px;
+  margin-left: -25%;
+  outline: 0;
+  border: 0;
+  background: linear-gradient(45deg, #8f02b7, #6003ce);
+  color: white;
+}
+.customAlert input[type=button]:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  background: linear-gradient(45deg, #8f02b7ad, #6003cead);
+}
+
+.rab {
+  width: 200px;
+  height: 30px;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: #039b73;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+	 </style>
+</head>
+
+<body>
+    	<div class='customAlert'>
+          <p class='message'></p>
+            <input type='button' class='confirmButton' value='Ok'>
+        </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method="POST" id="multiform2" class="form_text">
+                <h1 class="title">Create Account</h1>
+                <div class="social-icons">
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>-->
+                </div>
+                <div class="grid-fields">
+                    <div>
+                        <span class="caption"
+                              style="text-align: initial;">First Name</span>
+                        <input type=text name="FirstName"
+                               id="FirstName"
+                               class="prompt" required>
+                        <span id="FirstNameError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">User Name</span>
+                        <input type=text name="userName"
+                               id="userName"
+                               class="prompt" required>
+                        <span id="userNameError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Password<h6 style="display: inline;font-size: xx-small;position: absolute;line-height: 1.5;width: 196px;">(at least 8 characters, 1 lowercase,<br/> 1 uppercase, 1 digit)</h6></span>
+                        <input type=password name="create_password"
+                               id="create_password" oninput="validatePassword()"
+                               class="prompt" required>
+                        <span id="passwordError" style="color: red;display: block;text-align: left;font-size: xx-small;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Organisation Type</span>
+                        <select name="org_type"
+                               id="org_type"
+                               class="prompt" required>
+                            <option value="">--Select--</option>
+                            <option value="INST">Institute</option>
+                            <option value="COMP">Company</option>
+                            <option value="Other">Other</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                        <span id="orgTypeError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Department</span>
+                        <select name="Event_End_Date"
+                               id="department"
+                               class="prompt" required>
+                        </select>
+                         <input type=text name="departmentInput"
+                               id="departmentInput" style="display: none;"
+                               class="prompt" required>
+                        <span id="departmentError" style="color: red;display: block;text-align: left;"></span>
+                    </div>
+                    <div>
+                        <span class="caption"
+                              style="text-align: initial;">Last Name</span>
+                        <input type=text name="LastName"
+                               id="LastName"
+                               class="prompt" required>
+                        <span id="LastNameError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Organisation Mail Id</span>
+                        <input type=text name="mail_id"
+                               id="mail_id"
+                               class="prompt" required>
+                        <span id="mailidError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Confirm Password</span>
+                        <input type=password name="confirmPassword"
+                               id="confirmPassword" oninput="validatePasswordMatch()"
+                               class="prompt" required>
+                        <span id="confirmPasswordError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Organisation Name</span>
+                        <select  name="org_name"
+                               id="org_name"
+                               class="prompt" required>
+                        </select>
+                        <input type=text name="orgNameInput"
+                               id="orgNameInput" style="display: none;"
+                               class="prompt" required>
+                        <span id="orgNameError" style="color: red;display: block;text-align: left;"></span>
+                        <span class="caption"
+                              style="text-align: initial;">Role</span>
+                        <select name="role"
+                               id="role"
+                               class="prompt" required>
+                        </select>
+                        <input type=text name="roleInput"
+                               id="roleInput" style="display: none;"
+                               class="prompt" required>
+                        <span id="roleError" style="color: red;display: block;text-align: left;"></span>
+                    </div>
+                </div>
+<!--                <input type="button" style="background: linear-gradient(45deg, #8f02b7, #6003ce);" id="register_btn">Sign Up</input>-->
+                <input type="button" class="btn" style="background: linear-gradient(45deg, #8f02b7, #6003ce);" id="register_btn" value="Sign up" />
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form class="form_text" method="POST" id="loginPage">
+                <h1 class="title">Login</h1>
+<!--                <div class="social-icons">-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>-->
+<!--                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>-->
+<!--                </div>-->
+<!--                <span>or use your email password</span>-->
+                <input type="email" placeholder="Email" id="check_email" name="check_email" class="prompting">
+                <input type="password" placeholder="Password" id="check_password" name="check_password" class="prompting">
+
+                <p style="color: red;margin: -20px 0 15px;" {{invalid_msg}}>Invalid UserName/Password</p>
+                <p style="color: red;margin: -20px 0 15px;" {{access_name}}>Please Enter Username</p>
+                <p style="color: red;margin: -20px 0 15px;" {{access_pass}}>Please Enter Password</p>
+
+                <a href="#" style="display: block;">Forget Your Password?</a>
+                <button onclick="login_events()" style="background: linear-gradient(45deg, #8f02b7, #6003ce);">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all site features</p>
+                    <button class="hidden" id="login" onclick="changeStylesright()">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all site features</p>
+                    <button class="hidden" id="register" onclick="changeStylesleft()">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Piki Templates Hosted Plugins -->
+    <script src="/static/images/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    {#
+    <script>window.jQuery || document.write('<script src="/static/js/login/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+    #}
+    <script src="/static/js/login/jquery-ui.min.js"></script>
+    <script src="/static/js/login/jquery.ui.touch-punch.min.js"></script>
+    <script src="/static/js/login/bootstrap.bundle.min.js"></script>
+
+    <script src="/static/js/loginscript.js"></script>
+    <script src="/static/js/colleges_list.js"></script>
+    <script src="/static/js/dept_list.js"></script>
+    <script src="/static/js/roles_list.js"></script>
+    <script src="/static/js/login_register_.js"></script>
+<script>
+     // Call populate Institute Dropdown function when the type of org changes
+        const orgSelect = document.getElementById("org_type");
+        orgSelect.addEventListener('change', populateInstituteDropdown);
+
+
+
+     // Function to populate Institute dropdown based on the selected country
+        function populateInstituteDropdown() {
+            let OrgType = document.getElementById("org_type");
+            let OrgName = document.getElementById("org_name");
+
+            if (OrgType.value === 'Other') {
+                document.getElementById("org_name").style.display = 'none';
+                document.getElementById("orgNameInput").style.display = 'inline-block';
+
+                document.getElementById("department").style.display = 'none';
+                document.getElementById("departmentInput").style.display = 'inline-block';
+
+                document.getElementById("role").style.display = 'none';
+                document.getElementById("roleInput").style.display = 'inline-block';
+
+
+            } else {
+                document.getElementById("org_name").style.display = 'inline-block';
+                document.getElementById("orgNameInput").style.display = 'none';
+
+                document.getElementById("department").style.display = 'inline-block';
+                document.getElementById("departmentInput").style.display = 'none';
+
+                document.getElementById("role").style.display = 'inline-block';
+                document.getElementById("roleInput").style.display = 'none';
+            }
+
+            let selectedTypeCode = OrgType.value;
+            let OrgList = college_list_dump[selectedTypeCode];
+
+            OrgName.innerHTML = '<option value="">--Select--</option>';
+
+
+
+            if (OrgList && OrgList.length > 0) {
+                let options = '';
+                for (let i = 0; i < OrgList.length; i++) {
+                    let orgListName = OrgList[i][0];
+                    let orgListId = OrgList[i][1];
+                    options += '<option value="' + orgListId + '">' + orgListName + '</option>';
+                }
+                OrgName.innerHTML += options;
+            }
+        }
+
+
+     // Call populate dept Dropdown function when the type of org changes
+        const orgNameSelect = document.getElementById("org_name");
+        orgNameSelect.addEventListener('change', populateDeptDropdown);
+
+    // Function to populate dept dropdown based on the selected country
+        function populateDeptDropdown() {
+            let OrgType = document.getElementById("org_type");
+            let department = document.getElementById("department");
+            let selectedTypeCode = OrgType.value;
+            let deptList = dept_list[selectedTypeCode];
+
+            department.innerHTML = '<option value="">--Select--</option>';
+
+            if (deptList && deptList.length > 0) {
+                let options = '';
+                for (let i = 0; i < deptList.length; i++) {
+                    let deptListName = deptList[i][0];
+                    let deptListId = deptList[i][1];
+                    options += '<option value="' + deptListId + '">' + deptListName + '</option>';
+                }
+                department.innerHTML += options;
+            }
+        }
+
+     // Call populate role Dropdown function when the type of org changes
+        const departmentSelect = document.getElementById("department");
+        departmentSelect.addEventListener('change', populateRoleDropdown);
+
+    // Function to populate role dropdown based on the selected country
+        function populateRoleDropdown() {
+            let department = document.getElementById("department");
+            let role = document.getElementById("role");
+            let selectedDeptCode = department.value;
+            let roleList = role_list[selectedDeptCode];
+
+            role.innerHTML = '<option value="">--Select--</option>';
+
+            if (roleList && roleList.length > 0) {
+                let options = '';
+                for (let i = 0; i < roleList.length; i++) {
+                    let roleListName = roleList[i][0];
+                    let roleListId = roleList[i][1];
+                    options += '<option value="' + roleListId + '">' + roleListName + '</option>';
+                }
+                role.innerHTML += options;
+            }
+        }
+
+
+
+    function login_events() {
+    document.getElementById("loginPage").action = '/';
+    document.getElementById("loginPage").submit();
+    return true;
+  }
+
+</script>
+
+
+<script>
+    document.getElementById("register_btn").addEventListener("click", init_register);
+</script>
+
+
+</body>
+
+</html>
